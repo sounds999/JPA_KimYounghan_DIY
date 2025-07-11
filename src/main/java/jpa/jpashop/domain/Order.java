@@ -1,6 +1,7 @@
 package jpa.jpashop.domain;
 
 import jakarta.persistence.*;
+import jpa.jpashop.domain.payment.Payment;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,9 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    @OneToMany(mappedBy = "order")
+    private List<Payment> payments;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
